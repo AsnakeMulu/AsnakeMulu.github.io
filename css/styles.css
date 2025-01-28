@@ -1278,5 +1278,29 @@ a:hover.back-to-top {
 		margin-left: 2.875rem;
 	}
 	/* end of extra pages */
+
+		ul.about-info {
+			display: inline-block;
+			padding: 0;
+			margin: 0;
+			width: 100%;
+		}
+	
+		ul.about-info li {
+			list-style: none;
+			margin-bottom: 10px;
+		}
+	
+		ul.about-info li span {
+			width: calc(100% - 130px);
+			font-weight: 600;
+			color: #b1b493;
+		}
+	
+		ul.about-info li span:first-child {
+			font-weight: 600;
+			color: #000000;
+			width: 130px;
+		}
 }
 /* end of min-width 1200px */
