@@ -32,6 +32,8 @@
 
     <!-- Favicon  -->
     <link rel="icon" href="images/favicon.png">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -470,7 +472,7 @@
                 <div class="col-lg-8">
 
                     <!-- Contact Form -->
-                    <form action="https://formspree.io/f/mvgzqrdd" method="post" id="contactForm">
+                    <form method="post" id="contactForm"> <!-- action="https://formspree.io/f/mvgzqrdd" -->
                         <div class="form-group">
                             <input type="text" name="name" class="form-control-input" id="cname" required>
                             <label class="label-control" for="cname">Name</label>
@@ -488,6 +490,8 @@
                         </div>
                     </form>
                     <!-- end of contact form -->
+
+                    <p id="success-message" style="display: none; color: green;">Message sent successfully!</p>
 
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
@@ -565,7 +569,27 @@
     </div> <!-- end of copyright -->
     <!-- end of copyright -->
 
+    <script>
+        $(document).ready(function () {
+            $("#contactForm").submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
 
+                $.ajax({
+                    url: "https://formspree.io/f/mvgzqrdd", // Replace with your Formspree endpoint
+                    method: "POST",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        $("#success-message").fadeIn(); // Show success message
+                        $("#contact-form")[0].reset(); // Clear form fields
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
     <!-- Scripts -->
     <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
